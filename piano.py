@@ -60,7 +60,7 @@ while True:
         imgOverlay,gname = ut.create_overlay_image(polygons, warped_point, imgOverlay)
         imgOutput = ut.inverse_warp_image(img, imgOverlay, key_point)
         if gname != None:
-            winsound.PlaySound(f"song/{gname}.wav",winsound.SND_ALIAS)
+            winsound.PlaySound(f"song/{gname}.wav",winsound.SND_FILENAME)
     
     cv2.imshow(win_name, imgOutput)
     
