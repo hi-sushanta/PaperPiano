@@ -3,8 +3,10 @@ import pickle  # Pickle library for serializing Python objects
 import cv2  # OpenCV library for computer vision tasks
 import numpy as np  # NumPy library for numerical operations
 from cvzone.HandTrackingModule import HandDetector
-import winsound
+import time
 from utils import Utils
+import pygame
+
 ######################################
 cam_id = 1
 width, height = 1280, 720
@@ -26,6 +28,8 @@ else:
  
 # Open a connection to the webcam
 cap = cv2.VideoCapture(cam_id)  # For Webcam
+pygame.init()
+
 # Set the width and height of the webcam frame
 cap.set(3, width)
 cap.set(4, height)
@@ -56,14 +60,19 @@ while True:
     
     h, w, _ = imgWarped.shape
     imgOverlay = np.zeros((h, w, 3), dtype=np.uint8)
+    gname = None
     if warped_point:
         imgOverlay,gname = ut.create_overlay_image(polygons, warped_point, imgOverlay)
         imgOutput = ut.inverse_warp_image(img, imgOverlay, key_point)
-        if gname != None:
-            winsound.PlaySound(f"song/{gname}.wav",winsound.SND_FILENAME)
+        
+
     
     cv2.imshow(win_name, imgOutput)
-    
+    if gname != None:
+            my_sound = pygame.mixer.Sound(f"song/{gname}.wav")
+            my_sound.play()
+            time.sleep(1)
+
     key = cv2.waitKey(1)
 
     if key == 27:
