@@ -68,11 +68,12 @@ while True:
 
     
     cv2.imshow(win_name, imgOutput)
+    
     if gname != None:
             my_sound = pygame.mixer.Sound(f"song/{gname}.wav")
             my_sound.play()
-            time.sleep(1)
-
+            time.sleep(0.6)
+    
     key = cv2.waitKey(1)
 
     if key == 27:
