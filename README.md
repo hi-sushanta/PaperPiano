@@ -7,3 +7,12 @@ This project combines the magic of computer vision and Python to create a tangib
 * ***Python Programming for Real-World Interaction:*** Learn how to use Python libraries like OpenCV to process video streams and translate fingertip locations into actionable commands.
 * ***Music on Demand:*** Discover how to map fingertip positions on the paper piano to corresponding musical notes, allowing you to play melodies and chords directly on the paper.
 * ***Customization (Optional):*** Elevate your paper piano by incorporating features like adjustable key sizes, diverse instrument sounds, and visual feedback for key presses.
+
+## Question: How to use this project on our laptop?
+The answer is simple: follow some of these steps each by each.
+1. setup your web camera and print piano keyboard paper
+2. Once you've printed out your piano keyboard paper, move on to the next step: positioning your webcam directly above the piano paper.
+3. Open it up in your trusty VsCode. Now, let's awaken its potential by running the get_corner_point.py script nestled within the GetCornerPoint folder. Once it springs to life, a remarkable feat awaits. With a few deft clicks, you'll guide it to identify the four crucial corner points of your piano paper. This information will be meticulously preserved in a file on your local machine. When the magic is complete, simply press 'ESC' to exit the program and prepare for the next exciting step in your musical journey!
+4. Run the piano.py program and get ready to unlock the musical magic within your paper piano. Simply hover your hand over a specific key, and watch the wonder unfold - a corresponding sound will be played, transforming your paper masterpiece into a digital instrument. Each key becomes a gateway to a new melody, waiting for your touch to bring it to life!
+
+***This Readme file provides a foundational overview. We'll soon be adding even more context and illustrative examples to make it even more informative!***
