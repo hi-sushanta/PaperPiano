@@ -28,14 +28,14 @@ else:
  
 # Open a connection to the webcam
 cap = cv2.VideoCapture(cam_id)  # For Webcam
-pygame.init()
+
 
 # Set the width and height of the webcam frame
 cap.set(3, width)
 cap.set(4, height)
 win_name = "Output Image"
-cv2.namedWindow(win_name, cv2.WND_PROP_FULLSCREEN)
-cv2.setWindowProperty(win_name,cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
+# cv2.namedWindow(win_name, cv2.WND_PROP_FULLSCREEN)
+# cv2.setWindowProperty(win_name,cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
 
 # Counter to keep track of how many polygons have been created
 counter = 0
@@ -48,6 +48,13 @@ detector = HandDetector(staticMode=False,
                         minTrackCon=0.5)
  
 ut = Utils(detector)
+
+def play_sound(sound_path):
+    pygame.mixer.init()
+    pygame.mixer.music.load(sound_path)
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        continue
 
 while True:
     # Read a frame from the webcam
@@ -70,9 +77,9 @@ while True:
     cv2.imshow(win_name, imgOutput)
     
     if gname != None:
-            my_sound = pygame.mixer.Sound(f"song/{gname}.wav")
-            my_sound.play()
-            time.sleep(0.6)
+            my_sound = play_sound(f"song/{gname}.wav")
+            # my_sound.play()
+            # time.sleep(0.7)
     
     key = cv2.waitKey(1)
 
