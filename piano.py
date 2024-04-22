@@ -9,6 +9,7 @@ import pygame
 
 ######################################
 cam_id = 1
+cam_id2 = 0 # Laptop Webcamera detect
 width, height = 1280, 720
 map_file_path = "GetCornerPoint/corner.p"
 countries_file_path = "GetPollygonPoint/piano.p"
@@ -28,11 +29,13 @@ else:
  
 # Open a connection to the webcam
 cap = cv2.VideoCapture(cam_id)  # For Webcam
-
+cap2 = cv2.VideoCapture(cam_id2)
 
 # Set the width and height of the webcam frame
 cap.set(3, width)
 cap.set(4, height)
+cap2.set(3, width)
+cap2.set(4, height)
 win_name = "Output Image"
 # cv2.namedWindow(win_name, cv2.WND_PROP_FULLSCREEN)
 # cv2.setWindowProperty(win_name,cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
@@ -59,6 +62,7 @@ def play_sound(sound_path):
 while True:
     # Read a frame from the webcam
     success, img = cap.read()
+    success2, img2 = cap2.read()
     imgWarped, matrix = ut.warp_image(img, key_point)
     imgOutput = img.copy()
  
@@ -73,13 +77,11 @@ while True:
         imgOutput = ut.inverse_warp_image(img, imgOverlay, key_point)
         
 
-    
     cv2.imshow(win_name, imgOutput)
+    cv2.imshow("YourFace",img2)
     
     if gname != None:
             my_sound = play_sound(f"song/{gname}.wav")
-            # my_sound.play()
-            # time.sleep(0.7)
     
     key = cv2.waitKey(1)
 
