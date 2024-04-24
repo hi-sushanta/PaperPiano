@@ -1,9 +1,8 @@
 # Import necessary libraries
-import pickle  # Pickle library for serializing Python objects
-import cv2  # OpenCV library for computer vision tasks
-import numpy as np  # NumPy library for numerical operations
+import pickle  
+import cv2  
+import numpy as np  
 from cvzone.HandTrackingModule import HandDetector
-import time
 from utils import Utils
 import pygame
 
@@ -28,8 +27,8 @@ else:
     polygons = []
  
 # Open a connection to the webcam
-cap = cv2.VideoCapture(cam_id)  # For Webcam
-cap2 = cv2.VideoCapture(cam_id2)
+cap = cv2.VideoCapture(cam_id)  # For extranal Webcam
+cap2 = cv2.VideoCapture(cam_id2) # For Internal laptop webcam
 
 # Set the width and height of the webcam frame
 cap.set(3, width)
@@ -37,8 +36,6 @@ cap.set(4, height)
 cap2.set(3, width)
 cap2.set(4, height)
 win_name = "Output Image"
-# cv2.namedWindow(win_name, cv2.WND_PROP_FULLSCREEN)
-# cv2.setWindowProperty(win_name,cv2.WND_PROP_FULLSCREEN,cv2.WINDOW_FULLSCREEN)
 
 # Counter to keep track of how many polygons have been created
 counter = 0
@@ -85,7 +82,7 @@ while True:
     
     key = cv2.waitKey(1)
 
-    if key == 27:
+    if (key == 27) or (ord(key) == "Q") or (ord(key) == "q"):
         break
   
 cap.release()
