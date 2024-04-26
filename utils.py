@@ -3,6 +3,7 @@ import numpy as np
 import cvzone 
 
 class Utils():
+
     def __init__(self,detector):
         self.detector = detector
 
@@ -23,6 +24,7 @@ class Utils():
         pts2 = np.float32([[0, 0], [size[0], 0], [0, size[1]], [size[0], size[1]]])
         matrix = cv2.getPerspectiveTransform(pts1, pts2)
         imgOutput = cv2.warpPerspective(img, matrix, (size[0], size[1]))
+
         return imgOutput, matrix
     
     def warp_single_point(self,point, matrix):
@@ -36,6 +38,7 @@ class Utils():
         Returns:
         - point_warped: Warped coordinates of the point.
         """
+
         # Convert the point to homogeneous coordinates
         point_homogeneous = np.array([[point[0], point[1], 1]], dtype=np.float32)
     
@@ -58,8 +61,10 @@ class Utils():
         Returns:
         - warped_point: Coordinates of the index finger tip in the warped image.
         """
+
         # Find hands in the current frame
         hands, img = self.detector.findHands(img, draw=False, flipType=True)
+
         # Check if any hands are detected
         if hands:
             # Information for the first hand detected
@@ -85,18 +90,17 @@ class Utils():
         Returns:
         - imgOverlay: Overlay image with marked polygons.
         """
+
         # loop through all the Pianos keys
         kname = None
         for polygon, name in polygons:
             polygon_np = np.array(polygon, np.int32).reshape((-1, 1, 2))
             result = cv2.pointPolygonTest(polygon_np, warped_point, False)
             if result >= 0:
-                # winsound.PlaySound(None,0)
                 cv2.polylines(imgOverlay, [np.array(polygon)], isClosed=True, color=(0, 255, 0), thickness=2)
                 cv2.fillPoly(imgOverlay, [np.array(polygon)], (0, 255, 0))
                 cvzone.putTextRect(imgOverlay, name, polygon[0], scale=1, thickness=1)
                 cvzone.putTextRect(imgOverlay, name, (0, 100), scale=8, thickness=5)
-                # winsound.PlaySound(f"song/{name}.wav",winsound.SND_ALIAS)
                 kname = name
 
         return imgOverlay,kname
@@ -113,6 +117,7 @@ class Utils():
         Returns:
         - result: Combined image with the overlay applied.
         """
+        
         # Convert map_points to NumPy array
         key_point = np.array(key_point, dtype=np.float32)
     
