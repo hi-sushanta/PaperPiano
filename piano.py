@@ -10,17 +10,17 @@ import pygame
 cam_id = 1
 cam_id2 = 0 # Laptop Webcamera detect
 width, height = 1280, 720
-map_file_path = "GetCornerPoint/corner.p"
-countries_file_path = "GetPollygonPoint/piano.p"
+corner_file_path = "GetCornerPoint/corner.p"
+key_file_path = "GetPollygonPoint/piano.p"
 ######################################
  
-file_obj = open(map_file_path, 'rb')
+file_obj = open(corner_file_path, 'rb')
 key_point = pickle.load(file_obj)
 file_obj.close()
  
 # Load previously defined Regions of Interest (ROIs) polygons from a file
-if countries_file_path:
-    file_obj = open(countries_file_path, 'rb')
+if key_file_path:
+    file_obj = open(key_file_path, 'rb')
     polygons = pickle.load(file_obj)
     file_obj.close()
 else:
@@ -86,4 +86,5 @@ while True:
         break
   
 cap.release()
+cap2.release()
 cv2.destroyAllWindows()
