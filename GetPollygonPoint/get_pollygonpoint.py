@@ -35,7 +35,7 @@ if keys_file_path:
     file_obj = open(keys_file_path, 'rb')
     polygons = pickle.load(file_obj)
     file_obj.close()
-    print(f"Loaded {len(polygons)} countries.")
+    print(f"Loaded {len(polygons)} piano keys.")
 else:
     polygons = []
 
@@ -73,8 +73,7 @@ def mousePoints(event, x, y, flags, params):
     - flags: Additional information about the mouse event.
     - params: Additional parameters passed to the callback.
  
-    Returns:
-    None
+    Returns: None
     """
     global counter, current_polygon
  
@@ -90,7 +89,6 @@ while True:
     # img = cv2.flip(img,1)
     imgWarped, _ = warp_image(img, map_points)
  
-    # print(current_polygon)
     key = cv2.waitKey(1)
  
     # If the "s" key is pressed, save the polygon
