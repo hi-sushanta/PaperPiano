@@ -53,13 +53,14 @@ def play_sound(sound_path):
     pygame.mixer.init()
     pygame.mixer.music.load(sound_path)
     pygame.mixer.music.play()
-    while pygame.mixer.music.get_busy():
-        continue
+    # while pygame.mixer.music.get_busy():
+    #     continue
 
 while True:
     # Read a frame from the webcam
     success, img = cap.read()
     success2, img2 = cap2.read()
+    hands , img = detector.findHands(img,draw=True,flipType=True)
     imgWarped, matrix = ut.warp_image(img, key_point)
     imgOutput = img.copy()
  
@@ -82,7 +83,7 @@ while True:
     
     key = cv2.waitKey(1)
 
-    if (key == 27) or (ord(key) == "Q") or (ord(key) == "q"):
+    if (key == 27) or (key == ord("Q")) or (key == ord("q")):
         break
   
 cap.release()
