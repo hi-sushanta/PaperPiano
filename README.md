@@ -6,7 +6,6 @@ This project combines the magic of computer vision and Python to create a tangib
 * ***Computer Vision in Action:*** Master techniques like colour segmentation and hand detection to track your fingertips precisely on the printed piano keys.
 * ***Python Programming for Real-World Interaction:*** Learn how to use Python libraries like OpenCV to process video streams and translate fingertip locations into actionable commands.
 * ***Music on Demand:*** Discover how to map fingertip positions on the paper piano to corresponding musical notes, allowing you to play melodies and chords directly on the paper.
-* ***Customization (Optional):*** Elevate your paper piano by incorporating features like adjustable key sizes, diverse instrument sounds, and visual feedback for key presses.
 
 ## Question: How to use this project on our laptop?
 The answer is simple: follow some of these steps each by each.
